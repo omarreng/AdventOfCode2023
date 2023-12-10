@@ -29,7 +29,7 @@ std::pair<int, string> find_max_last(const string &str);
 int main()
 {
     int result = 0;
-    vector<string> file = readFile("input_test.txt");
+    vector<string> file = readFile("input_day1.txt");
 
     for (string &s : file)
     {
@@ -110,8 +110,8 @@ std::pair<int, string> find_max_last(const string &str)
     std::pair<int, string> result = std::make_pair(-1, "");
     for (auto &s : numbers)
     {
-        int position = str.size() - str.find_last_of(s.first) - 1;
-        if (position != string::npos && position > result.first)
+        int position = str.rfind(s.first);
+        if (str.rfind(s.first) != string::npos && position > result.first)
         {
             result = std::make_pair(position, s.first);
         }
