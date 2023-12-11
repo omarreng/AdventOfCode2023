@@ -14,13 +14,18 @@ unordered_map<string, int> process_line(string str);
 int main()
 {
     vector<string> input = readFile("input_day2.txt");
+    int result = 0;
 
     for (string &s : input)
     {
-        process_line(s);
+        unordered_map<string, int> game = process_line(s);
+        if (game.at("red") <= 12 && game.at("green") <= 13 && game.at("blue") <= 14)
+        {
+            result += game.at("ID");
+        }
     }
 
-    cout << "Hello from day 2!" << endl;
+    cout << "The result is : " << result << endl;
     return 0;
 }
 
