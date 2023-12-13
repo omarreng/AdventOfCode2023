@@ -32,3 +32,17 @@ vector<string> readFile(string filePath)
 
     return result;
 }
+
+vector<string> split_line(string str, char delimiter)
+{
+    istringstream iss(str);
+    string token;
+    vector<string> result;
+
+    while (std::getline(iss, token, delimiter))
+    {
+        result.push_back(token);
+    }
+
+    return result;
+}
