@@ -42,10 +42,10 @@ int main()
 
     do
     {
-        cout << "Index : " << std::setw(3) << std::setfill(' ') << index << endl;
+        cout << "Index : " << std::setw(3) << std::setfill(' ') << index << "\tPQ size: " << std::setw(4) << std::setfill(' ') << pq.size() << endl;
         current_result = process_line(index++, processed_input.at(index).first, processed_input.at(index).second, pq);
         result += current_result;
-    } while (!pq.empty() || current_result > 1);
+    } while (index < processed_input.size());
 
     cout << "Result : " << result << endl;
 
