@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <functional>
 #include <queue>
+#include <iomanip>
 
 #include "fileio.hpp"
 
@@ -37,11 +38,14 @@ int main()
     }
 
     int index = 0;
+    int current_result = 0;
 
     do
     {
-        result += process_line(index++, processed_input.at(index).first, processed_input.at(index).second, pq);
-    } while (!pq.empty());
+        cout << "Index : " << std::setw(3) << std::setfill(' ') << index << endl;
+        current_result = process_line(index++, processed_input.at(index).first, processed_input.at(index).second, pq);
+        result += current_result;
+    } while (!pq.empty() || current_result > 1);
 
     cout << "Result : " << result << endl;
 
@@ -80,7 +84,8 @@ int process_line(int index, const vector<string> &winning_numbers, const vector<
     while (!pq.empty() && pq.top() == index)
     {
         pq.pop();
+        add_wins(index, score, pq);
         result++;
     }
-    return result + (score > 0) ? 1 : 0;
+    return result + 1;
 }
