@@ -9,6 +9,8 @@
 using namespace std;
 
 vector<vector<int64_t>> parse_map(const vector<string> str);
+int64_t traverse_maps(const vector<vector<vector<int64_t>>> vec, int64_t seed);
+int64_t traverse_map(const vector<vector<int64_t>> vec, int64_t source);
 
 int main()
 {
@@ -41,7 +43,18 @@ int main()
         processed_maps.push_back(temp);
     }
 
-    cout << "Hello from day 5!" << endl;
+    uint64_t result = traverse_maps(processed_maps, std::stoll(seeds.at(0)));
+
+    for (int i = 1; i < seeds.size(); i++)
+    {
+        uint64_t temp = traverse_maps(processed_maps, std::stoll(seeds.at(i)));
+        if (temp < result)
+        {
+            result = temp;
+        }
+    }
+
+    cout << "Result : " << result << endl;
 
     return 0;
 }
@@ -60,4 +73,25 @@ vector<vector<int64_t>> parse_map(const vector<string> vec)
         result.push_back(temp_i);
     }
     return result;
+}
+
+int64_t traverse_maps(const vector<vector<vector<int64_t>>> vec, int64_t seed)
+{
+    for (const vector<vector<int64_t>> temp : vec)
+    {
+        seed = traverse_map(temp, seed);
+    }
+    return seed;
+}
+
+int64_t traverse_map(const vector<vector<int64_t>> vec, int64_t source)
+{
+    for (const vector<int64_t> range : vec)
+    {
+        if (source >= range.at(1) && source < (range.at(1) + range.at(2)))
+        {
+            return (source - range.at(1)) + range.at(0);
+        }
+    }
+    return source;
 }
