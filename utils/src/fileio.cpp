@@ -46,3 +46,24 @@ vector<string> split_line(string str, char delimiter)
 
     return result;
 }
+
+vector<vector<string>> split_vector(const vector<string> &vec, string delimiter)
+{
+    vector<vector<string>> result;
+    vector<string> temp;
+    for (string str : vec)
+    {
+        if (str == delimiter)
+        {
+            result.push_back(temp);
+            temp.clear();
+            continue;
+        }
+        temp.push_back(str);
+    }
+    if (!temp.empty())
+    {
+        result.push_back(temp);
+    }
+    return result;
+}
