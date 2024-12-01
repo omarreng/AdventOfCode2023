@@ -9,7 +9,7 @@
 
 using namespace std;
 
-vector<string> readFile(string filePath)
+vector<string> read_file(string filePath)
 {
     ifstream inputFile(filePath, ifstream::in);
 
