@@ -2,18 +2,18 @@
 
 void N(int &ix, int &iy)
 {
-  iy--;
+  ix--;
 }
 
 void NE(int &ix, int &iy)
 {
-  ix++;
-  iy--;
+  ix--;
+  iy++;
 }
 
 void E(int &ix, int &iy)
 {
-  ix++;
+  iy++;
 }
 
 void SE(int &ix, int &iy)
@@ -24,18 +24,18 @@ void SE(int &ix, int &iy)
 
 void S(int &ix, int &iy)
 {
-  iy++;
+  ix++;
 }
 
 void SW(int &ix, int &iy)
 {
-  ix--;
-  iy++;
+  ix++;
+  iy--;
 }
 
 void W(int &ix, int &iy)
 {
-  ix--;
+  iy--;
 }
 
 void NW(int &ix, int &iy)
