@@ -74,6 +74,7 @@ void step(vector<vector<char>> &map, int &ix, int &iy, const vector<function<voi
   if (is_bound(map, temp_x, temp_y) && map[temp_x][temp_y] == OBSTACLE)
   {
     index = ++index % strategies.size();
+    return;
   }
 
   strategies[index](ix, iy);
