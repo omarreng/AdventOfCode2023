@@ -2,7 +2,7 @@
 #include <string>
 
 #include "fileio.h"
-#include "Strategies/strategies.h"
+#include "strategies.h"
 
 bool is_bound(int ix, int iy, int rows, int cols);
 bool probe_letters(vector<vector<char>> puzzle, int ix, int iy, function<void(int &, int &)> direction);
