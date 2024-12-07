@@ -53,3 +53,8 @@ size_t MUL(size_t ix, size_t iy)
 {
   return ix * iy;
 }
+
+size_t CONCAT(size_t ix, size_t iy)
+{
+  return stoll(to_string(ix) + to_string(iy));
+}

@@ -1,4 +1,7 @@
 #include <cstddef>
+#include <string>
+
+using namespace std;
 
 void N(int &ix, int &iy);
 void NE(int &ix, int &iy);
@@ -10,3 +13,4 @@ void W(int &ix, int &iy);
 void NW(int &ix, int &iy);
 size_t ADD(size_t ix, size_t iy);
 size_t MUL(size_t ix, size_t iy);
+size_t CONCAT(size_t ix, size_t iy);
