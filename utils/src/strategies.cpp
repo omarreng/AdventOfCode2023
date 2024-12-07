@@ -43,3 +43,13 @@ void NW(int &ix, int &iy)
   ix--;
   iy--;
 }
+
+size_t ADD(size_t ix, size_t iy)
+{
+  return ix + iy;
+}
+
+size_t MUL(size_t ix, size_t iy)
+{
+  return ix * iy;
+}
