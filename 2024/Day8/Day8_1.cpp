@@ -3,12 +3,11 @@
 #include <set>
 
 #include "fileio.h"
-#include "strategies.h"
+#include "utils.h"
 
 map<char, vector<pair<int, int>>> scan_for_antennas(vector<vector<char>> &input);
 void process_antenna_pair(pair<int, int> a1, pair<int, int> a2, const vector<vector<char>> &input, set<pair<int, int>> &results);
 function<int(int)> get_linear_func(pair<int, int> p1, pair<int, int> p2);
-void print_map(const vector<vector<char>> &map);
 
 int main()
 {
@@ -92,17 +91,4 @@ function<int(int)> get_linear_func(pair<int, int> p1, pair<int, int> p2)
 
     return (my * x + by) / mx;
   };
-}
-
-void print_map(const vector<vector<char>> &map)
-{
-  for (const auto row : map)
-  {
-    for (const auto col : row)
-    {
-      cout << col;
-    }
-    cout << endl;
-  }
-  cout << endl;
 }

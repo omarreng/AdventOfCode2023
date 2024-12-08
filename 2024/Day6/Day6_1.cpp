@@ -3,6 +3,7 @@
 
 #include "fileio.h"
 #include "strategies.h"
+#include "utils.h"
 
 #define START_POS '^'
 #define OBSTACLE '#'
@@ -10,7 +11,6 @@
 #define INVALID_POS -1
 
 void find_starting_position(vector<vector<char>> map, int &ix, int &iy);
-bool is_bound(vector<vector<char>> map, int ix, int iy);
 void step(vector<vector<char>> &map, int &ix, int &iy, const vector<function<void(int &, int &)>> strategies, int &index);
 
 const vector<function<void(int &, int &)>> strategies = {N, E, S, W};
@@ -56,11 +56,6 @@ void find_starting_position(vector<vector<char>> map, int &ix, int &iy)
   }
   ix = INVALID_POS;
   iy = INVALID_POS;
-}
-
-bool is_bound(vector<vector<char>> map, int ix, int iy)
-{
-  return ix >= 0 && iy >= 0 && ix < map.size() && iy < map[0].size();
 }
 
 void step(vector<vector<char>> &map, int &ix, int &iy, const vector<function<void(int &, int &)>> strategies, int &index)
