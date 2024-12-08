@@ -81,7 +81,10 @@ void process_antenna_pair(pair<int, int> a1, pair<int, int> a2, const vector<vec
   } while (is_bound(input, possible_antinode_1.first, possible_antinode_1.second));
 
   iteration = 0;
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4a39ac (Solution for Day 8 Problem 2)
   do
   {
     possible_antinode_2 = make_pair(antenna_2.first + delta * iteration, line(antenna_2.first + delta * iteration));
