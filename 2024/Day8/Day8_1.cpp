@@ -31,9 +31,9 @@ int main()
 
   for (const auto &result : results)
   {
-    if (input[result.second][result.first] == '.')
+    if (input[result.first][result.second] == '.')
     {
-      input[result.second][result.first] = '#';
+      input[result.first][result.second] = '#';
     }
   }
 
@@ -53,7 +53,7 @@ map<char, vector<pair<int, int>>> scan_for_antennas(vector<vector<char>> &input)
     {
       if (input[row][col] != '.')
       {
-        result[input[row][col]].push_back({col, row});
+        result[input[row][col]].push_back({row, col});
       }
     }
   }
@@ -63,21 +63,20 @@ map<char, vector<pair<int, int>>> scan_for_antennas(vector<vector<char>> &input)
 void process_antenna_pair(pair<int, int> a1, pair<int, int> a2, const vector<vector<char>> &input, set<pair<int, int>> &results)
 {
   const auto line = get_linear_func(a1, a2);
-  int dx = a2.first - a1.first;
-  int dy = a2.second - a1.second;
+  int delta = abs(a1.first - a2.first);
 
-  const auto antenna_1 = a1; // a1.first < a2.first ? a1 : a2;
-  const auto antenna_2 = a2; // a1.first < a2.first ? a2 : a1;
+  const auto antenna_1 = a1.first < a2.first ? a1 : a2;
+  const auto antenna_2 = a1.first < a2.first ? a2 : a1;
 
-  const auto possible_antinode_1 = make_pair(antenna_1.first - dx, antenna_1.second - dy);
-  const auto possible_antinode_2 = make_pair(antenna_2.first + dx, antenna_2.second + dy);
+  const auto possible_antinode_1 = make_pair(antenna_1.first - delta, line(antenna_1.first - delta));
+  const auto possible_antinode_2 = make_pair(antenna_2.first + delta, line(antenna_2.first + delta));
 
-  if (is_bound(input, possible_antinode_1.second, possible_antinode_1.first))
+  if (is_bound(input, possible_antinode_1.first, possible_antinode_1.second))
   {
     results.insert(possible_antinode_1);
   }
 
-  if (is_bound(input, possible_antinode_2.second, possible_antinode_2.first))
+  if (is_bound(input, possible_antinode_2.first, possible_antinode_2.second))
   {
     results.insert(possible_antinode_2);
   }
