@@ -80,7 +80,6 @@ void process_antenna_pair(pair<int, int> a1, pair<int, int> a2, const vector<vec
     iteration++;
   } while (is_bound(input, possible_antinode_1.first, possible_antinode_1.second));
 
-  // Comment
   iteration = 0;
   do
   {
