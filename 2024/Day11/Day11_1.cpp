@@ -16,23 +16,12 @@ int main()
     stones.push_back(stoll(s));
   }
 
-<<<<<<< HEAD
-  print_stones(stones);
-  cout << endl;
-
-=======
->>>>>>> f669fd8 (Solution for Day 11 Problem 1)
   for (int i = 0; i < BLINKS; i++)
   {
     for (int ix = 0; ix < stones.size(); ix++)
     {
       process_blink(stones, ix);
     }
-<<<<<<< HEAD
-    // cout << "Blink " << (i + 1) << ": ";
-    // print_stones(stones);
-=======
->>>>>>> f669fd8 (Solution for Day 11 Problem 1)
   }
 
   cout << "Result is: " << stones.size() << endl;
