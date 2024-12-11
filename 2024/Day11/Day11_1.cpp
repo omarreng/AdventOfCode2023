@@ -1,7 +1,6 @@
 #include "fileio.h"
 
 void process_blink(vector<size_t> &input, int &ix);
-void print_stones(vector<size_t> &input);
 
 #define BLINKS 25
 
@@ -48,14 +47,4 @@ void process_blink(vector<size_t> &input, int &ix)
   {
     input[ix] *= 2024;
   }
-}
-
-void print_stones(vector<size_t> &input)
-{
-  cout << "[";
-  for (int i = 0; i < input.size() - 1; i++)
-  {
-    cout << input[i] << ", ";
-  }
-  cout << input[input.size() - 1] << "]" << endl;
 }
