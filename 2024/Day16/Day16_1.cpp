@@ -1,9 +1,12 @@
 #include <functional>
 #include <limits>
+#include <map>
 #include <stack>
+#include <unordered_set>
 
 #include "fileio.h"
 #include "strategies.h"
+#include "utils.h"
 
 #define START 'S'
 #define END 'E'
@@ -14,12 +17,15 @@
 pair<int, int> find_position(const vector<vector<char>> &puzzle, const char position);
 size_t find_optimal_score(const vector<vector<char>> &puzzle);
 
+map<char, function<void(int &, int &)>> dir_map = {{'N', N}, {'E', E}, {'S', S}, {'W', W}};
+map<char, vector<char>> dir_explore = {{'N', {'W', 'E'}}, {'E', {'N', 'S'}}, {'S', {'E', 'W'}}, {'W', {'S', 'N'}}};
+
 struct node
 {
   int ix;
   int iy;
+  char direction;
   size_t score;
-  function<void(int &, int &)> direction;
 };
 
 int main()
@@ -51,13 +57,32 @@ size_t find_optimal_score(const vector<vector<char>> &puzzle)
 {
   size_t result = numeric_limits<size_t>::max();
   stack<node> tiles;
+  unordered_set<pair<int, int>, pair_hash> visited_tiles;
 
   auto start_pos = find_position(puzzle, START);
+  visited_tiles.insert({start_pos.first, start_pos.second});
 
-  tiles.push({start_pos.first, start_pos.second, 2000, W});
-  tiles.push({start_pos.first, start_pos.second, 1000, N});
-  tiles.push({start_pos.first, start_pos.second, 1000, S});
-  tiles.push({start_pos.first, start_pos.second, 0, W});
+  tiles.push({start_pos.first, start_pos.second, 'W', 2000});
+  tiles.push({start_pos.first, start_pos.second, 'N', 1000});
+  tiles.push({start_pos.first, start_pos.second, 'S', 1000});
+  tiles.push({start_pos.first, start_pos.second, 'E', 0});
+
+  while (!tiles.empty())
+  {
+    auto tile = tiles.top();
+    tiles.pop();
+    int ix_temp = tile.ix;
+    int iy_temp = tile.iy;
+    tile.direction(ix_temp, iy_temp);
+    if (!is_bound(puzzle, ix_temp, iy_temp))
+    {
+      continue;
+    }
+    if (visited_tiles.find({ix_temp, iy_temp}) != visited_tiles.end())
+    {
+      continue;
+    }
+  }
 
   return result;
 }
